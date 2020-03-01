@@ -22,13 +22,8 @@ browsers: ['ChromeHeadlessNoSandbox'],
 ## Usage (Gitlab)
 Create a .gitlab-ci.yml file in the root of your project with following contents:
 ```
-# This file is a template, and might need editing before it works on your project.
-# Official framework image. Look for the different tagged releases at:
-# https://hub.docker.com/r/library/node/tags/
 image: geertjanklaps/node-cf-cli:latest
 
-# This folder is cached between builds
-# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
   paths:
   - node_modules/
