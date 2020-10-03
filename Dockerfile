@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-LABEL maintainer="Geert-Jan Klaps"
+LABEL maintainer="MPN"
 LABEL version="1.0"
 
 # Install required packages for next installs
@@ -27,6 +27,9 @@ RUN apt-get install -y nodejs
 
 # Update npm to latest version
 RUN npm install npm@latest -g
+
+# install mta build tools
+run npm install -g mbt
 
 # Run cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
