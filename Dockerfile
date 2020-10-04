@@ -13,13 +13,14 @@ RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.k
 RUN echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
 RUN apt-get update && apt-get install -y cf7-cli
 
-# Setup alias for CF7 command
-#RUN echo "alias cf='cf7'" >> ~/.bashrc
-#RUN echo -e '#!/bin/bash\ncf7 "$@"' > /usr/bin/cf && chmod +x /usr/bin/cf
-
 # Install community repository and MTA plugin
 RUN cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
 RUN cf install-plugin multiapps -f
+
+# Install mbt tools
+RUN wget https://github.com/SAP/cloud-mta-build-tool/releases/download/v1.0.16/cloud-mta-build-tool_1.0.16_Linux_amd64.tar.gz
+RUN tar xvzf cloud-mta-build-tool_1.0.16_Linux_amd64.tar.gz
+RUN cp mbt /usr/local/bin/
 
 # Install NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
@@ -28,8 +29,8 @@ RUN apt-get install -y nodejs
 # Update npm to latest version
 RUN npm install npm@latest -g
 
-# install mta build tools
-RUN npm install mbt
+# Install ui5 build tools cli
+RUN npm install --global @ui5/cli
 
 # Run cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
