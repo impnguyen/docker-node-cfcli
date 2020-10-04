@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 LABEL maintainer="MPN"
-LABEL version="1.0"
+LABEL version="0.1"
 
 # Install required packages for next installs
 RUN apt-get update && apt-get install -y wget gnupg2 curl chromium-browser build-essential
