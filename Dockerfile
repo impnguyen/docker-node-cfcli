@@ -29,6 +29,9 @@ RUN npm install npm@latest -g
 # Install ui5 build tools cli
 RUN npm install --global @ui5/cli
 
+# Install essential packages for ci tasks and create eslintignore
+RUN npm install --global eslint
+
 # Run cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
